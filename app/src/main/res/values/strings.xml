@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Simon dice</string>
+    <string name="Rojo">Rojo</string>
+    <string name="Amarillo">Amarillo</string>
+    <string name="Azul">Azul</string>
+    <string name="Verde">Verde</string>
+    <string name="Start">Start</string>
+    <string name="Check">Check</string>
+</resources>
