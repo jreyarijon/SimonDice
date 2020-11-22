@@ -33,21 +33,70 @@ class MainActivity : AppCompatActivity() {
         green.setOnClickListener{
             jugador.add(4)
         }
-        val start:Button = findViewById(R.id.bStart)
-        start.setOnClickListener{
-            val toast = Toast.makeText(applicationContext,"Empieza el juego!", Toast.LENGTH_SHORT)
-            toast.show()
+
+        fun rand(start: Int, end: Int): Int {
+            require(start <= end) { "Illegal Argument"}
+            return (start..end).random()
         }
+        fun añadirColor()  {
+            val numb= Random.nextInt(4) + 1
+            juego.add(numb)
+        }
+
+        fun colores(){
+           //CoroutineScope(Dispatchers.Main).launch {
+                for(color in juego){
+                    when (color) {
+                        1 -> {
+                            red.setPressed(true)
+                            //delay(500)
+                            red.setPressed(false)
+                        }
+                        2 -> {
+                            yellow.setPressed(true)
+                            //delay(500)
+                            yellow.setPressed(false)
+                        }
+                        3 -> {
+                            blue.setPressed(true)
+                            //delay(500)
+                            blue.setPressed(false)
+                        }
+                        else -> {
+                            green.setPressed(true)
+                            //delay(500)
+                            green.setPressed(false)
+                        }
+                   // }
+                }
+            }
+        }
+
         val check:Button = findViewById(R.id.bCheck)
         check.setOnClickListener{
             val toast = Toast.makeText(applicationContext,"Game Over", Toast.LENGTH_SHORT)
-            if(juego != jugador){
+            if(juego == jugador){
+                juego.add(rand(1,4))
+                jugador.clear()
+                colores()
+            }else{
                 toast.show()
                 jugador.clear()
                 juego.clear()
             }
         }
 
+        val start:Button = findViewById(R.id.bStart)
+        start.setOnClickListener{
+            val toast = Toast.makeText(applicationContext,"Empieza el juego!", Toast.LENGTH_SHORT)
+            jugador.clear()
+            juego.clear()
+            toast.show()
+            juego.add(rand(1,4))
+            colores()
+        }
     }
+
+
 }
 
